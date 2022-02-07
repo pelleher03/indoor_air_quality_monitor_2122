@@ -10,7 +10,7 @@ from hdc1080 import HDC1080
 i2c = I2C(1, scl=Pin(22), sda=Pin(21))
 bmp = BME280(i2c=i2c)
 ccs = CCS811(i2c=i2c, addr=90)
-hdc = HDC1080(i2c=i2c)
+#hdc = HDC1080(i2c=i2c)
 
 readings_bmp_temperature = []
 readings_bmp_pressure = []
@@ -35,14 +35,17 @@ async def read_ccs():
     
     
 async def read_hdc():
-    humidity = hdc.read_humidity()
-    temperature = hdc.read_temperature(celsius=True)
-    return humidity, temperature
+    #humidity = hdc.read_humidity()
+    #temperature = hdc.read_temperature(celsius=True)
+    #return humidity, temperature
+    return 0, 0
 
+#Om gjør at når man får en data populasjon på over 60 vil man fjerne den første, slik at man ikke får flerer enn 60
 def _pop0(l):
     if len(l) >= 60:
         l.pop(0)
-
+        
+#Lager en funksjon som tar dataen og sorterer den fra minst til størst og tar den dataen i midten
 def _mid(l):
     return sorted(l)[len(l)//2]
     
@@ -63,7 +66,6 @@ async def update_sensors_data(data):
     if eco2:
         readings_ccs_tvoc.append(tvoc)
         readings_ccs_eco2.append(eco2)
-    uasyncio.sleep_ms(1)
     
     humidity, temperature = await read_hdc()
     readings_hdc_humidity.append(humidity)
