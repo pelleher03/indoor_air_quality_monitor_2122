@@ -50,7 +50,7 @@ loop.create_task(sensors.collect_sensors_data(data, True))
 #Kjører nettsiden
 loop.create_task(naw.run())
 #Gjør at en lysdiode lyser
-#loop.create_task(blink())
+loop.create_task(blink())
 loop.run_forever()
     
 

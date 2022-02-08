@@ -4,7 +4,7 @@ from machine import Pin, I2C
 import uasyncio
 from BME280 import BME280
 from CCS811 import CCS811
-from hdc1080 import HDC1080
+#from hdc1080 import HDC1080
 
 
 i2c = I2C(1, scl=Pin(22), sda=Pin(21))

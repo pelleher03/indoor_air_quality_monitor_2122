@@ -4,6 +4,7 @@ async def naw_write_http_header(request, content_type='text/html'):
     Content types:
     json: application/json
     """
+    #Skriver hva slags data som kommer, og innholdstype 
     await request.write("HTTP/1.1 200 OK\r\n")
     await request.write("Content-Type: {}\r\n\r\n".format(content_type))
 
